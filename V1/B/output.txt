@@ -1,0 +1,16 @@
+=== SO(3) NUMERICAL INTEGRATION ERROR (N = 1024 Base Samples) ===
+f1(R) = Tr(R)        | Halton: 0.004995 | Haar Prime Walk: 0.000874 | MC RMSE: 0.034058 | Speedup vs MC: 38.965084x
+f2(R) = Tr(R^2)      | Halton: 1.004641 | Haar Prime Walk: 0.981975 | MC RMSE: 1.010410 | Speedup vs MC: 1.028957x
+f3(R) = v^T R^T M Rv | Halton: 0.000059 | Haar Prime Walk: 0.006075 | MC RMSE: 0.009157 | Speedup vs MC: 1.507306x
+
+=== CONVERGENCE SCALING ON f3(R) (N = 128 -> 2048) ===
+N =  128 | Halton Err: 0.001826 | Prime Walk Err: 0.000892 | MC RMSE: 0.020669
+N =  256 | Halton Err: 0.000463 | Prime Walk Err: 0.005559 | MC RMSE: 0.016031
+N =  512 | Halton Err: 0.000757 | Prime Walk Err: 0.005985 | MC RMSE: 0.010618
+N = 1024 | Halton Err: 0.000059 | Prime Walk Err: 0.006075 | MC RMSE: 0.007585
+N = 2048 | Halton Err: 0.000167 | Prime Walk Err: 0.007875 | MC RMSE: 0.005752
+
+Empirical Convergence Exponent alpha (Error ~ O(N^-alpha)):
+Halton QMC Slope      : alpha = 0.986709
+Haar Prime Walk Slope : alpha = -0.641180
+Monte Carlo Slope     : alpha = 0.477046

@@ -1,0 +1,19 @@
+Primes attempted: 2048 | Accepted: 2048 (100% acceptance)
+
+=== UNBIASED SO(3) INTEGRATION ERROR (N = 1024 Base Samples) ===
+f1(R) = Tr(R)        | Sobol: 0.001873 | Halton: 0.004995 | Prime Walk: 0.006945 | MC RMSE: 0.034058
+f2(R) = Tr(R^2)      | Sobol: 0.002271 | Halton: 0.004641 | Prime Walk: 0.032117 | MC RMSE: 0.048501
+f3(R) = v^T R^T M Rv | Sobol: 0.000349 | Halton: 0.000059 | Prime Walk: 0.003458 | MC RMSE: 0.009157
+
+=== UNBIASED CONVERGENCE SCALING ON f3(R) (N = 128 -> 2048) ===
+N =  128 | Sobol: 0.001500 | Halton: 0.001826 | Prime Walk: 0.015127 | MC RMSE: 0.020669
+N =  256 | Sobol: 0.001060 | Halton: 0.000463 | Prime Walk: 0.000128 | MC RMSE: 0.016031
+N =  512 | Sobol: 0.002208 | Halton: 0.000757 | Prime Walk: 0.001181 | MC RMSE: 0.010618
+N = 1024 | Sobol: 0.000349 | Halton: 0.000059 | Prime Walk: 0.003458 | MC RMSE: 0.007585
+N = 2048 | Sobol: 0.000224 | Halton: 0.000167 | Prime Walk: 0.001695 | MC RMSE: 0.005752
+
+Empirical Convergence Exponent alpha (Error ~ O(N^-alpha)):
+Sobol' QMC Slope      : alpha = 0.709199
+Halton QMC Slope      : alpha = 0.986709
+Haar Prime Walk Slope : alpha = 0.155511
+Monte Carlo Slope     : alpha = 0.477046

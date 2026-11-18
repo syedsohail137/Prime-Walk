@@ -1,0 +1,72 @@
+Prime Walk - 1B Test : Cyclic = Barrier, NO Owen
+Limit: 1000000000  Sample: every 1000-th prime full-checked
+Barrier B = 4 + 2*ln(p)
+
+p=37831 mod24=7 tup=(107,89,106,85) maxDet=0.499775 Area/p=0.244871 Ptolemy=1 cyclic=true Barrier=25.0818
+p=27457 mod24=1 tup=(98,68,115,2) maxDet=0.415413 Area/p=0.125212 Ptolemy=1 cyclic=true Barrier=24.4408
+p=7927 mod24=7 tup=(49,43,59,14) maxDet=0.440646 Area/p=0.184116 Ptolemy=1 cyclic=true Barrier=21.9561
+p=17393 mod24=17 tup=(74,60,91,6) maxDet=0.407865 Area/p=0.142918 Ptolemy=1 cyclic=true Barrier=23.5276
+... 10000000 primes streamed, 3.23141s
+... 20000000 primes streamed, 6.53173s
+... 30000000 primes streamed, 9.775s
+... 40000000 primes streamed, 13.0298s
+... 50000000 primes streamed, 16.2649s
+p=999009049 mod24=1 tup=(15826,15784,18569,12434) maxDet=0.490617 Area/p=0.240581 Ptolemy=1 cyclic=true Barrier=45.4445
+p=999051211 mod24=19 tup=(15803,15805,16891,14636) maxDet=0.498724 Area/p=0.248728 Ptolemy=1 cyclic=true Barrier=45.4446
+p=999030533 mod24=5 tup=(15816,15794,18471,12580) maxDet=0.491302 Area/p=0.241315 Ptolemy=1 cyclic=true Barrier=45.4446
+p=999093101 mod24=5 tup=(15828,15782,22347,328) maxDet=0.359211 Area/p=0.12868 Ptolemy=1 cyclic=true Barrier=45.4447
+p=999072203 mod24=11 tup=(15813,15799,22217,2412) maxDet=0.389786 Area/p=0.151849 Ptolemy=1 cyclic=true Barrier=45.4447
+p=999113981 mod24=5 tup=(15834,15776,22160,2907) maxDet=0.397094 Area/p=0.157247 Ptolemy=1 cyclic=true Barrier=45.4448
+p=999134519 mod24=23 tup=(15849,15763,21605,5718) maxDet=0.432925 Area/p=0.186844 Ptolemy=1 cyclic=true Barrier=45.4448
+p=999155851 mod24=19 tup=(15893,15719,22321,1120) maxDet=0.372668 Area/p=0.137527 Ptolemy=1 cyclic=true Barrier=45.4448
+p=999176369 mod24=17 tup=(15816,15794,20509,8886) maxDet=0.465099 Area/p=0.216199 Ptolemy=1 cyclic=true Barrier=45.4449
+p=999197267 mod24=11 tup=(15805,15807,19627,10692) maxDet=0.479598 Area/p=0.230025 Ptolemy=1 cyclic=true Barrier=45.4449
+p=999217567 mod24=7 tup=(15863,15749,22126,3161) maxDet=0.401081 Area/p=0.160009 Ptolemy=1 cyclic=true Barrier=45.445
+p=999238579 mod24=19 tup=(15959,15653,19292,11285) maxDet=0.484894 Area/p=0.233936 Ptolemy=1 cyclic=true Barrier=45.445
+p=999259501 mod24=13 tup=(15806,15808,22300,1499) maxDet=0.376449 Area/p=0.141749 Ptolemy=1 cyclic=true Barrier=45.4451
+p=999279713 mod24=17 tup=(15810,15804,19666,10621) maxDet=0.479119 Area/p=0.229532 Ptolemy=1 cyclic=true Barrier=45.4451
+p=999300737 mod24=17 tup=(15810,15804,20285,9386) maxDet=0.46937 Area/p=0.220282 Ptolemy=1 cyclic=true Barrier=45.4451
+p=999321707 mod24=11 tup=(15807,15809,21531,5996) maxDet=0.435427 Area/p=0.189625 Ptolemy=1 cyclic=true Barrier=45.4452
+p=999341989 mod24=13 tup=(15812,15802,22321,1180) maxDet=0.371831 Area/p=0.138191 Ptolemy=1 cyclic=true Barrier=45.4452
+p=999363263 mod24=23 tup=(15831,15785,20229,9506) maxDet=0.470597 Area/p=0.221235 Ptolemy=1 cyclic=true Barrier=45.4453
+p=999383347 mod24=19 tup=(15811,15805,22249,2140) maxDet=0.38584 Area/p=0.148845 Ptolemy=1 cyclic=true Barrier=45.4453
+p=999403927 mod24=7 tup=(15829,15787,19526,10879) maxDet=0.481111 Area/p=0.231296 Ptolemy=1 cyclic=true Barrier=45.4453
+p=999424939 mod24=19 tup=(15811,15805,21437,6332) maxDet=0.43927 Area/p=0.192927 Ptolemy=1 cyclic=true Barrier=45.4454
+p=999445753 mod24=1 tup=(15830,15788,21695,5378) maxDet=0.428577 Area/p=0.183402 Ptolemy=1 cyclic=true Barrier=45.4454
+p=999466021 mod24=13 tup=(15860,15758,21281,6836) maxDet=0.445476 Area/p=0.197805 Ptolemy=1 cyclic=true Barrier=45.4455
+p=999486997 mod24=13 tup=(15878,15740,19337,11212) maxDet=0.483758 Area/p=0.233483 Ptolemy=1 cyclic=true Barrier=45.4455
+p=999508177 mod24=1 tup=(15812,15806,21451,6286) maxDet=0.438756 Area/p=0.192477 Ptolemy=1 cyclic=true Barrier=45.4455
+p=999529151 mod24=23 tup=(15827,15789,19274,11325) maxDet=0.484088 Area/p=0.234196 Ptolemy=1 cyclic=true Barrier=45.4456
+p=999550381 mod24=13 tup=(15812,15806,20549,8800) maxDet=0.464222 Area/p=0.215475 Ptolemy=1 cyclic=true Barrier=45.4456
+p=999572143 mod24=7 tup=(15839,15781,18994,11785) maxDet=0.487033 Area/p=0.237001 Ptolemy=1 cyclic=true Barrier=45.4457
+p=999592931 mod24=11 tup=(15837,15783,22112,3277) maxDet=0.402072 Area/p=0.161274 Ptolemy=1 cyclic=true Barrier=45.4457
+p=999613547 mod24=11 tup=(15813,15807,20855,8048) maxDet=0.457172 Area/p=0.208979 Ptolemy=1 cyclic=true Barrier=45.4458
+p=999633961 mod24=1 tup=(15836,15782,19129,11570) maxDet=0.485702 Area/p=0.235709 Ptolemy=1 cyclic=true Barrier=45.4458
+p=999655133 mod24=5 tup=(15852,15766,15963,15652) maxDet=0.499987 Area/p=0.249974 Ptolemy=1 cyclic=true Barrier=45.4458
+p=999676409 mod24=17 tup=(15822,15796,21953,4230) maxDet=0.414292 Area/p=0.171448 Ptolemy=1 cyclic=true Barrier=45.4459
+p=999696923 mod24=11 tup=(15861,15759,22340,839) maxDet=0.367668 Area/p=0.134389 Ptolemy=1 cyclic=true Barrier=45.4459
+p=999717877 mod24=13 tup=(15820,15802,22273,1912) maxDet=0.38268 Area/p=0.146328 Ptolemy=1 cyclic=true Barrier=45.446
+p=999738799 mod24=7 tup=(15827,15793,19711,10550) maxDet=0.478707 Area/p=0.229013 Ptolemy=1 cyclic=true Barrier=45.446
+p=999760249 mod24=1 tup=(15844,15778,21265,6898) maxDet=0.445866 Area/p=0.198384 Ptolemy=1 cyclic=true Barrier=45.4461
+p=999781369 mod24=1 tup=(15814,15808,21670,5497) maxDet=0.42968 Area/p=0.184594 Ptolemy=1 cyclic=true Barrier=45.4461
+p=999802649 mod24=17 tup=(15816,15806,18734,12201) maxDet=0.489243 Area/p=0.239328 Ptolemy=1 cyclic=true Barrier=45.4461
+p=999823337 mod24=17 tup=(15818,15804,20601,8686) maxDet=0.463222 Area/p=0.214502 Ptolemy=1 cyclic=true Barrier=45.4462
+p=999844037 mod24=5 tup=(15830,15792,18688,12273) maxDet=0.489723 Area/p=0.23971 Ptolemy=1 cyclic=true Barrier=45.4462
+p=999865093 mod24=13 tup=(15814,15808,22352,527) maxDet=0.361854 Area/p=0.130901 Ptolemy=1 cyclic=true Barrier=45.4463
+p=999884993 mod24=17 tup=(15810,15812,19357,11190) maxDet=0.483026 Area/p=0.233323 Ptolemy=1 cyclic=true Barrier=45.4463
+p=999906311 mod24=23 tup=(15831,15793,19849,10290) maxDet=0.476784 Area/p=0.227154 Ptolemy=1 cyclic=true Barrier=45.4463
+p=999926453 mod24=5 tup=(15830,15792,16417,15180) maxDet=0.49964 Area/p=0.249617 Ptolemy=1 cyclic=true Barrier=45.4464
+p=999968131 mod24=19 tup=(15863,15761,21065,7496) maxDet=0.452313 Area/p=0.203966 Ptolemy=1 cyclic=true Barrier=45.4465
+p=999947147 mod24=11 tup=(15823,15801,22061,3636) maxDet=0.406545 Area/p=0.165125 Ptolemy=1 cyclic=true Barrier=45.4464
+p=999988747 mod24=19 tup=(15815,15809,20180,9629) maxDet=0.471377 Area/p=0.222169 Ptolemy=1 cyclic=true Barrier=45.4465
+
+=== SUMMARY : PRIMES UP TO 1000000000, NO OWEN, CYCLIC = BARRIER ===
+Total primes streamed: 50847534
+Full cyclic-checked (sampled): 50847
+Balanced 4-square found: 50847
+Cyclic violations: 0
+Det>1 violations: 0
+Barrier violations: 0
+Max |Det|/p: 0.5 at p=848994413
+Time: 16.5552s
+Conclusion: If cyclic, bounded. No gear needed.

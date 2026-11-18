@@ -1,0 +1,5 @@
+== S^3_+ HAAR-MEASURE QMC BENCHMARK (N = 1024) ===
+Halton QMC (Exact Haar)     : Riesz s=2 Energy = 4.439734
+Haar Prime Walk (S4 Orbit)  : Riesz s=2 Energy = 5.013241
+Monte Carlo (Exact Haar)    : Riesz s=2 Energy = 5.023201
+Ratio (Prime Walk / Halton) : 1.129176x
