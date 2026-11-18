@@ -1,64 +1,102 @@
-# Prime Walk: Deterministic Four-Square Prime Quaternions for $\mathrm{SO}(3)$ Quadrature
+# Prime Walk: Deterministic Four-Square Prime Quaternions for SO(3)
 
-A high-performance C++17 computational framework for constructing balanced integer four-square prime decompositions ($p = c^2 + d^2 + e^2 + f^2$) and mapping them via exact $\mathrm{Beta}(1/2, 1/2)$ Haar geometry onto $S^3_+ / \mathrm{SO}(3)$ for seed-free Quasi-Monte Carlo (QMC) numerical integration.
-
----
+A C++17 computational framework for constructing four-square decompositions of primes and exploring normalized quaternion geometry on $S^3$ and $SO(3)$.
 
 ## Overview
 
-1. **Parity-Aligned Four-Square Solver (`prime_1billion.cpp`)**
-   * Steers $(c, d)$ near target coordinates with strict parity enforcement ($c, d$ even for $p \equiv 1 \pmod 4$; odd for $p \equiv 3 \pmod 4$) so that $R = p - c^2 - d^2 \equiv 1 \pmod 4$.
-   * When $R$ passes deterministic Miller–Rabin primality testing, solves $R = e^2 + f^2$ via Tonelli–Shanks modular square roots and Cornacchia's algorithm.
-   * Verifies universal algebraic bounds ($\max |\mathrm{Det}| / p \le 0.5$) and cyclic quadrilateral area bounds ($\mathcal{A}/p \le 0.25$).
+Prime Walk combines parity-guided coordinate search with integer four-square decomposition:
 
-2. **Exact Haar-Measure Mapping & $\mathrm{SO}(3)$ Quadrature (`so3_prime_quadrature.cpp`)**
-   * Maps the 2D Plastic-Constant ($R_2$) low-discrepancy sequence through the inverse $\mathrm{Beta}(1/2, 1/2)$ CDF ($F^{-1}(u) = \sin^2(\frac{\pi}{2}u)$) so normalized prime quaternions $(c,d,e,f)/\sqrt{p} \in S^3_+$ follow the exact $\mathrm{Dirichlet}(1/2, 1/2, 1/2, 1/2)$ Haar volume element.
-   * Applies the 24-element $S_4$ coordinate permutation orbit and 8-element octant sign group to cover $\mathrm{SO}(3)$ without boundary or ordering bias.
+- Uses parity constraints to ensure that the remaining two-square term $R \equiv 1 \pmod 4$.
+- Tests $R$ for primality and decomposes it with Tonelli–Shanks and Cornacchia's method.
+- Normalizes the resulting $(c,d,e,f)$ tuple to a unit quaternion.
+- Includes experiments for geometry, Riesz energy, and SO(3) quadrature.
 
----
+The repository contains two implementation eras: an original 1-billion-prime cyclic test and later SO(3) / Haar-mapping versions.
 
-## Key Empirical Results
+## Implementations
 
-### 1. Arithmetic & Cryptographic Prime Verification
+| Path | Purpose |
+| :--- | :--- |
+| [`main.cpp`](main.cpp) | Main Haar-mapped SO(3) experiment for generating positive-octant unit quaternions and comparing prime-walk, Sobol, Halton, and Monte Carlo quadrature. |
+| [`V0/main.cpp`](V0/main.cpp) | Original segmented-sieve and cyclic four-square test for primes up to $10^9$. |
+| [`V1/A/main.cpp`](V1/A/main.cpp) | Earlier Riesz $s=2$ energy implementation using a Haar-mapped $S^3_+$ prime walk and $S_4$ permutations. |
 
-| Test Scope / Family | Bit Size | Primes Tested | Success Rate | Max $\text{maxDet}$ |
-| :--- | :--- | :--- | :--- | :--- |
-| **Segmented Sieve Stream ($\le 10^9$)** | $\le 30$-bit | 50,847,534 (50,847 sampled) | **100%** | `0.500000` |
-| **Trillion & Quadrillion Primes** | 40–50-bit | $10^{12}+39$, $10^{15}+37$ | **100%** ($k \le 38$) | `0.494812` |
-| **Sophie Germain & Safe Primes** | 61–258-bit | 90 primes | **100%** ($k \le 449$) | `0.499757` |
-| **Solinas, Curve & ZK-STARK Fields** | 31–521-bit | 20 primes (incl. M31, Curve25519, BLS12-381, P-521) | **100%** ($k \le 257$) | `0.499999` |
-| **RFC 3526 Diffie–Hellman Safe Primes** | 1024–2048-bit | Group 2 & Group 14 | **100%** ($k \le 593$) | `0.427450` |
+The remaining implementation and report files are listed in [Repository Contents](#repository-contents).
 
-### 2. $S^3_+$ Uniformity & Unbiased $\mathrm{SO}(3)$ Integration ($N = 1024$, $p > 10^7$)
-* **Acceptance Rate:** `2048 / 2048` (**100%**) within diamond search radius $\le 250$.
-* **$S^3_+$ Riesz $s=2$ Energy:** `5.013241` (matching exact Haar Monte Carlo `5.023201`; 140$\times$ reduction vs. unsteered balanced slices `702.0227`).
+## Build and Run
 
-| Integrand on $\mathrm{SO}(3)$ | Exact Mean | Sobol' Error | Halton Error | **Haar Prime Walk** | Monte Carlo RMSE |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| $f_1(R) = \mathrm{Tr}(R)$ | `0.0` | `0.001873` | `0.004995` | **`0.006945`** | `0.034058` |
-| $f_2(R) = \mathrm{Tr}(R^2)$ | `1.0` | `0.002271` | `0.004641` | **`0.032117`** | `0.048501` |
-| $f_3(R) = \mathbf{v}^T R^T M R \mathbf{v}$ | `2.0` | `0.000349` | `0.000059` | **`0.003458`** | `0.009157` |
+Requires a C++17 compiler. OpenMP is used by the supplied implementations.
 
----
-
-## Build & Run
-
-Requires a C++17 compiler with OpenMP support (`g++` or `clang++`).
+### Main Haar / SO(3) benchmark
 
 ```bash
-# 1. Compile and run the 1-Billion Prime Walk stream test
-g++ -O3 -march=native -fopenmp -std=c++17 prime_1billion.cpp -o prime_1billion
-./prime_1billion --limit 1000000000 --sample 1000
-
-# 2. Compile and run the S^3_+ Riesz energy & SO(3) QMC quadrature benchmark
-g++ -O3 -march=native -fopenmp -std=c++17 so3_prime_quadrature.cpp -o so3_prime_quadrature
-./so3_prime_quadrature
+g++ -O3 -march=native -fopenmp -std=c++17 main.cpp -o prime_walk
+./prime_walk
 ```
 
----
+The executable streams primes above $10^7$, constructs four-square decompositions, and reports SO(3) integration errors and convergence exponents.
+
+### 1-billion-prime cyclic test
+
+```bash
+g++ -O3 -march=native -fopenmp -std=c++17 V0/main.cpp -o prime_walk_v0
+./prime_walk_v0 --limit 1000000000 --sample 1000
+```
+
+For a full check of every prime below 100 million:
+
+```bash
+./prime_walk_v0 --limit 100000000 --sample 1
+```
+
+> Under the default `--sample 1000`, only every sampled prime is decomposition-checked; streamed primes outside the sample are not individually four-square checked.
+
+### V1 Riesz-energy benchmark
+
+```bash
+g++ -O3 -march=native -fopenmp -std=c++17 V1/A/main.cpp -o prime_walk_v1a
+./prime_walk_v1a
+```
 
 ## Repository Contents
 
-* `prime_1billion.cpp` — Segmented prime sieve and OpenMP balanced four-square verifier up to $10^9$.
-* `so3_prime_quadrature.cpp` — Unbiased $\mathrm{Beta}(1/2, 1/2)$ Haar Prime Walk generator and $\mathrm{SO}(3)$ integration benchmark against Sobol', Halton, and Monte Carlo.
-* `Prime_Walk_SO3_Quadrature_IEEE_Paper.tex` / `.pdf` — Formal two-column IEEE manuscript detailing proofs, algorithms, and empirical benchmarks.
+- [`main.cpp`](main.cpp) — Haar-mapped $S^3_+$ generator and SO(3) quadrature benchmarks.
+- [`V0/`](V0/) — original large-scale prime walk test and output/report artifacts.
+- [`V1/A/`](V1/A/) — $S_4$-orbit Haar prime-walk and Riesz-energy benchmark.
+- [`V1/B/`](V1/B/) — additional V1 source and results.
+- [`output.txt`](output.txt) — representative output for the main implementation.
+- [`Prime_Walk_SO3_Quadrature_IEEE_Paper.tex`](Prime_Walk_SO3_Quadrature_IEEE_Paper.tex) — LaTeX manuscript source.
+- [`Prime_Walk_SO3_Quadrature_IEEE_Paper.pdf`](Prime_Walk_SO3_Quadrature_IEEE_Paper.pdf) — compiled IEEE-style manuscript.
+- [`Prime_Walk_QMC_and_SO3_Quadrature_Report.pdf`](Prime_Walk_QMC_and_SO3_Quadrature_Report.pdf) — supplemental report.
+
+## Method Summary
+
+For an odd prime $p$, the implementation searches for positive integers $(c,d)$ with parity determined by $p \bmod 4$, leaving:
+
+$$R = p-c^2-d^2 \equiv 1 \pmod 4.$$
+
+If $R$ is prime, Cornacchia's method decomposes $R=e^2+f^2$, yielding:
+
+$$p=c^2+d^2+e^2+f^2.$$
+
+Dividing the tuple by $\sqrt{p}$ gives a unit quaternion $q=(c,d,e,f)/\sqrt{p}$ that is used by the SO(3) experiment.
+
+## Geometry Checks
+
+The original implementation checks algebraic geometry derived from the four-square components, including normalized determinant expressions and cyclic-quadrilateral area/Ptolemy tests. These results are experimental unless proved and stated in the accompanying manuscript.
+
+## Reproducing the LaTeX Paper
+
+```bash
+pdflatex Prime_Walk_SO3_Quadrature_IEEE_Paper.tex
+pdflatex Prime_Walk_SO3_Quadrature_IEEE_Paper.tex
+```
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Language Composition
+
+- C++: primary implementation and benchmarks.
+- TeX: manuscript and report source.
